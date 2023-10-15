@@ -1,4 +1,4 @@
-package com.futurysoft.smallrestorestapi.controllers;
+package com.futurysoft.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import com.futurysoft.smallrestorestapi.models.Menu;
-import com.futurysoft.smallrestorestapi.repositories.MenuRepository;
+import com.futurysoft.models.Menu;
+import com.futurysoft.repositories.MenuRepository;
 
 @RestController
-@RequestMapping("api/v1/menu")
+@RequestMapping("menu")
 public class MenuController {
 
     @Autowired

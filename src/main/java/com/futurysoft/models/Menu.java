@@ -1,4 +1,4 @@
-package com.futurysoft.smallrestorestapi.models;
+package com.futurysoft.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
 
 @Entity
 @Getter
@@ -25,13 +27,15 @@ public class Menu {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String menuMame;
-    private ArrayList<String> ingredient;
+    private String menuName;
+    private ArrayList<String> ingredients;
     private String chiefName;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-DD-YYYY")
     @CreationTimestamp
     private LocalDateTime createDate;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-DD-YYYY")
     @UpdateTimestamp
     private LocalDateTime updateDate;
 }
