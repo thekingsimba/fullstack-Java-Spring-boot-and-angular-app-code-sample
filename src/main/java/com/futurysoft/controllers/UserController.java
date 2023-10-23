@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.futurysoft.models.User;
 import com.futurysoft.repositories.UserRepository;
 
+import static com.futurysoft.constant.Constant.API_V1;
+
 @RestController
-@RequestMapping("user")
+@RequestMapping(path = API_V1 + "user")
 public class UserController {
 
     @Autowired

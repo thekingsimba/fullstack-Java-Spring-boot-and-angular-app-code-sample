@@ -16,8 +16,10 @@ import org.springframework.http.HttpStatus;
 import com.futurysoft.models.Menu;
 import com.futurysoft.repositories.MenuRepository;
 
+import static com.futurysoft.constant.Constant.API_V1;
+
 @RestController
-@RequestMapping("menu")
+@RequestMapping(path = API_V1 + "menu")
 public class MenuController {
 
     @Autowired

@@ -28,14 +28,20 @@ public class Menu {
     private Long id;
 
     private String menuName;
-    private ArrayList<String> ingredients;
-    private String chiefName;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-DD-YYYY")
+    private ArrayList<String> ingredients;
+
+    private Long chiefId;
+
+    private Double price;
+
+    private String imageUrl;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-YYYY")
     @CreationTimestamp
     private LocalDateTime createDate;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-DD-YYYY")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-YYYY")
     @UpdateTimestamp
     private LocalDateTime updateDate;
 }
