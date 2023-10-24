@@ -1,4 +1,4 @@
-package com.futurysoft.models;
+package com.futurysoft.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
