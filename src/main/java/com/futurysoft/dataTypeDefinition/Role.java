@@ -1,10 +1,8 @@
-package com.futurysoft.utils.userUtils;
+package com.futurysoft.dataTypeDefinition.userUtils;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
-import com.futurysoft.utils.userUtils.Permission;
 
 import java.util.Collections;
 import java.util.List;
