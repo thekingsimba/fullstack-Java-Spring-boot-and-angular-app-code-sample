@@ -1,4 +1,4 @@
-package com.futurysoft.config;
+package com.futurysoft.services;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

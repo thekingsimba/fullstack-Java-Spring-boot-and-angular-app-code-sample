@@ -1,4 +1,4 @@
-package com.futurysoft.dataTypeDefinition.userUtils;
+package com.futurysoft.dataTypeDefinition;
 
 
 import lombok.Getter;

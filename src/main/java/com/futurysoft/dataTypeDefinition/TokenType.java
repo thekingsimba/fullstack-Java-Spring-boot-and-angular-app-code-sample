@@ -1,4 +1,4 @@
-package com.futurysoft.dataTypeDefinition.tokenUtils;
+package com.futurysoft.dataTypeDefinition;
 
 public enum TokenType {
   BEARER

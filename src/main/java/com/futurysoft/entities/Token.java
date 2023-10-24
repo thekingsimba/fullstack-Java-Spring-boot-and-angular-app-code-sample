@@ -1,6 +1,6 @@
 package com.futurysoft.entities;
 
-import com.alibou.security.user.User;
+import com.futurysoft.dataTypeDefinition.TokenType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

@@ -2,6 +2,7 @@ package com.futurysoft.entities;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,7 +10,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.futurysoft.utils.userUtils.Role;
+import com.futurysoft.dataTypeDefinition.Role;
 
 @Data
 @Builder
@@ -36,6 +37,9 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private List<Token> tokens;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
