@@ -1,9 +1,10 @@
 package com.futurysoft.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.futurysoft.services.MenuServices;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 import com.futurysoft.entities.Menu;
-import com.futurysoft.repositories.MenuRepository;
 
 import static com.futurysoft.constant.Constant.API_V1;
 
@@ -24,23 +24,27 @@ import static com.futurysoft.constant.Constant.API_V1;
 public class MenuController {
 
     @Autowired
-    private MenuRepository menuRepository;
+    private MenuServices menuServices;
 
     @GetMapping
-    public List<Menu> getAllMenu() {
-        return menuRepository.findAll();
+    public ResponseEntity<List<Menu>> getAllMenu() {
+        List<Menu> allMenu = this.menuServices.findAllMenus();
+        return new ResponseEntity(allMenu, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Optional<Menu> getOneMenu(@PathVariable("id") long id) {
-        Optional<Menu> menuFound = menuRepository.findById(id);
-        return menuFound;
+    public ResponseEntity<Optional<Menu>> getOneMenu(@PathVariable("id") long id) {
+        Optional<Menu> menuFound = menuServices.findMenuById(id);
+        if (menuFound == null) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(menuFound, HttpStatus.OK) ;
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.OK)
-    public void createNewMenu(@RequestBody Menu menu) {
-        menuRepository.save(menu);
+    public ResponseEntity<Menu> createNewMenu(@RequestBody Menu menuObject) {
+        Menu newMenuCreated = this.menuServices.createNewMenu(menuObject);
+        return new ResponseEntity<>(newMenuCreated, HttpStatus.OK);
     }
 
 }
