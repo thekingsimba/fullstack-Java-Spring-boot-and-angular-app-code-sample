@@ -32,13 +32,22 @@ public class MenuServices implements MenuServicesInterface {
     }
 
     @Override
-    public Menu updateMenuById(Long idOfMenuToUpdate, Menu updatedMenuObject) {
-        // return this.menuRepository.save(updatedMenuObject);
-        return updatedMenuObject;
+    public Menu updateMenuById(Menu previewMenuObject, Menu updatedMenuObject) {
+        previewMenuObject.setMenuName(updatedMenuObject.getMenuName());
+        previewMenuObject.setIngredients(updatedMenuObject.getIngredients());
+        previewMenuObject.setChiefId(updatedMenuObject.getChiefId());
+        previewMenuObject.setPrice(updatedMenuObject.getPrice());
+        previewMenuObject.setImageUrl(updatedMenuObject.getImageUrl());
+        return menuRepository.save(previewMenuObject);
     }
 
     @Override
-    public void deleteMenuById(Long idOfMenuToDelete) {
-        this.menuRepository.deleteById(idOfMenuToDelete);
+    public boolean deleteMenuById(Long idOfMenuToDelete) {
+        if (menuRepository.existsById(idOfMenuToDelete)) {
+            menuRepository.deleteById(idOfMenuToDelete);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

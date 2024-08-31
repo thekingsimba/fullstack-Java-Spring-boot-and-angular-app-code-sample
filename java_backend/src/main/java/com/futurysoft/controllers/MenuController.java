@@ -5,13 +5,7 @@ import java.util.Optional;
 
 import com.futurysoft.services.MenuServices;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
@@ -44,7 +38,17 @@ public class MenuController {
     @PostMapping
     public ResponseEntity<Menu> createNewMenu(@RequestBody Menu menuObject) {
         Menu newMenuCreated = this.menuServices.createNewMenu(menuObject);
-        return new ResponseEntity<>(newMenuCreated, HttpStatus.OK);
+        return new ResponseEntity<>(newMenuCreated, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMenu(@PathVariable("id") long id) {
+        boolean deleted =  this.menuServices.deleteMenuById(id);
+        if (deleted){
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }

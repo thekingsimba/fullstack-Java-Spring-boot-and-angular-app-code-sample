@@ -13,7 +13,7 @@ public interface MenuServicesInterface {
 
     Optional<Menu> findMenuById(Long idOfMenuToFind);
 
-    Menu updateMenuById(Long idOfMenu, Menu updatedMenuObject);
+    Menu updateMenuById(Menu previewMenuObject, Menu updatedMenuObject);
 
-    void deleteMenuById(Long idOfMenuToDelete);
+    boolean deleteMenuById(Long idOfMenuToDelete);
 }
