@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_container
+    environment:
+      MYSQL_ROOT_PASSWORD: wf@owiefh98wetn2rk345!
+      MYSQL_DATABASE: smallrestodevdb
+      MYSQL_USER: smallrestodevuser
+      MYSQL_PASSWORD: klro@inlYTR!
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app-network
+
+
+  app:
+    image: smallresto-rest-api:latest
+    container_name: smallresto_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/smallrestodevdb
+      SPRING_DATASOURCE_USERNAME: smallrestodevuser
+      SPRING_DATASOURCE_PASSWORD: klro@inlYTR!
+    networks:
+      - app-network
+
+volumes:
+  mysql_data:
+
+networks:
+  app-network:

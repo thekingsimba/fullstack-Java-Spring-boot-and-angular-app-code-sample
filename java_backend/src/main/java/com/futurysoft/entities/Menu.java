@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -36,6 +37,9 @@ public class Menu {
     private Double price;
 
     private String imageUrl;
+
+    @OneToMany
+    private List<OrderDetails> orderDetailsList;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-YYYY")
     @CreationTimestamp

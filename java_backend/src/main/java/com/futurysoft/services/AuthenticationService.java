@@ -11,6 +11,7 @@ import com.futurysoft.repositories.TokenRepository;
 import com.futurysoft.repositories.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,11 +24,11 @@ import java.io.IOException;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-  private final UserRepository repository;
-  private final TokenRepository tokenRepository;
-  private final PasswordEncoder passwordEncoder;
-  private final JwtService jwtService;
-  private final AuthenticationManager authenticationManager;
+  private UserRepository repository;
+  private TokenRepository tokenRepository;
+  private PasswordEncoder passwordEncoder;
+  private JwtService jwtService;
+  private AuthenticationManager authenticationManager;
 
   public AuthenticationResponse register(RegisterRequest request) {
     var user = User.builder()
